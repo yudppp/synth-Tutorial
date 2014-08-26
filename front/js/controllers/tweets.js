@@ -1,5 +1,5 @@
 angular.module('my_app')
-.controller('tweetsController', function ($scope, $http, data) {
+.controller('tweetsController', function ($scope, $http, $location, data) {
   $scope.tweets = data.tweets;
   $scope.publish = function () {
     $http.post('/api/tweets', { content: $scope.newTweet })
@@ -8,4 +8,10 @@ angular.module('my_app')
     });
     $scope.newTweet = '';
   };
+  $scope.showDetail = function (id) {
+    $location.path('/tweets/' + id );
+  }
+})
+.controller('tweetController', function ($scope, $http, data) {
+  $scope.tweet = data.tweet;
 });
